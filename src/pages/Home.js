@@ -27,18 +27,25 @@ const Home = () => {
   </div>
 
     <h1 className='text-center mt-20 font-medium text-2xl border-b-4 w-10 mx-auto border-red-400'>TOURS</h1>
-   <table className='w-1/2 text-left mt-8 text-md text-slate-700 mx-auto font-semibold '>
-    {Musicdata.map((item)=>(
-     <tr className='border-b-2 border-red-400   '>
-      <td key={item.id}></td>
-      <td className="">{item.date}</td>
-      <td className="py-5  text-left">{item.artist}</td>
-      <td className="py-5  text-left">{item.song}</td>
-      <td className="py-5  text-left"><button className='uppercase border-2 text-slate-50 py-2 px-5 rounded-lg bg-red-400 shadow-sm transition ease-in-out hover:translate-y-1 hover:scale-110 duration-300 shadow-slate-900 hover:bg-slate-950'>buy tickets</button></td>
-
+    <div className='overflow-x-auto max-w-7xl mx-auto'>
+  <table className='w-full text-center mt-8 text-md text-slate-700 mx-auto font-semibold'>
+    {Musicdata.map((item) => (
+      <tr className='border-b-2 border-red-400' key={item.id}>
+        <td className=''>{item.date}</td>
+        <td className='py-5 text-center'>{item.artist}</td>
+        <td className='py-5 text-center'>{item.song}</td>
+        <td className='py-5 text-center'>
+          <button className='uppercase border-2 text-slate-50 py-2 px-5 rounded-lg bg-red-400 shadow-sm transition ease-in-out hover:translate-y-1 hover:scale-110 duration-300 shadow-slate-900 hover:bg-slate-950'>
+            Buy Tickets
+          </button>
+        </td>
       </tr>
-      ))}
-      </table>
+    ))}
+  </table>
+</div>
+
+
+     
     
      
         

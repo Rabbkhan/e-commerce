@@ -4,11 +4,12 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Store from "./pages/Store";
-import Users from "./components/Users";
+// import Users from "./components/Users";
 import Signin from "./Login/Signin";
 import Signup from "./Login/Signup";
 import Herosection from './components/Herosection';
 import FooterSection from "./components/FooterSection";
+import Detailspage from "./pages/Detailspage";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="store" element={<Store />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="users/:userid" element={<Users />} />
+        {/* <Route path="users/:userid" element={<Users />} /> */}
+        <Route path="detailspage/:productid" element={<Detailspage/>}/>
         <Route path="signin" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
       </Routes>

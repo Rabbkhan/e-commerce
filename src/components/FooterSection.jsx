@@ -24,9 +24,9 @@ const FooterSection = () => {
       <iframe className='w-full h-full' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.453670601685!2d88.34214537575603!3d22.59952792654384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0277dcb5577abf%3A0x627f262a3830e698!2sD-WEB%20CONSULTANTS%20PVT.%20LTD.!5e0!3m2!1sen!2sin!4v1693705874219!5m2!1sen!2sin"
             title='location map'
           style={{border:0}}
-         allowfullscreen=""
+          allowFullScreen=""
           loading="lazy"
-           referrerpolicy="no-referrer-when-downgrade">
+           referrerPolicy="no-referrer-when-downgrade">
             
            </iframe>
       </div>

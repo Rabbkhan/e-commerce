@@ -10,8 +10,11 @@ import Signup from "./Login/Signup";
 import Herosection from './components/Herosection';
 import FooterSection from "./components/FooterSection";
 import Detailspage from "./pages/Detailspage";
+import { useContext } from 'react';
+import AuthContext from './store/auth-context';
 
 function App() {
+  const authCtx= useContext(AuthContext)
   return (
     <>
 
@@ -21,11 +24,11 @@ function App() {
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="store" element={<Store />} />
-        <Route path="contact" element={<Contact />} />
+        {authCtx.isLoggedIn &&(<Route path="contact" element={<Contact />} />)}
         {/* <Route path="users/:userid" element={<Users />} /> */}
-        <Route path="detailspage/:productid" element={<Detailspage/>}/>
-        <Route path="signin" element={<Signin />} />
-        <Route path="signup" element={<Signup />} />
+        {authCtx.isLoggedIn &&( <Route path="detailspage/:productid" element={<Detailspage/>}/>)}
+        {!authCtx.isLoggedIn &&(<Route path="signin" element={<Signin />} />)}
+        {!authCtx.isLoggedIn &&(<Route path="signup" element={<Signup />} />)}
       </Routes>
       <FooterSection />
     </Router>

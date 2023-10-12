@@ -1,58 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-const Signup = () => {
+import AuthContext from '../store/auth-context';
+import { useNavigate } from 'react-router-dom';
+
+const Signin = () => {
   const [isLoading, setLoading] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const authCtx = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const submitHandler = async (e) => {
     e.preventDefault();
     setLoading(true);
-
-    // Reset form state
     setError(null);
 
-    // Login API handling
-    if (isLogin) {
-      try {
-        const response = await fetch(
-          'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDX43zQVaf3t-Hb9Gqap_JUSumjpZmNPcM',
-          {
-            method: 'POST',
-            body: JSON.stringify({
-              email,
-              password,
-              returnSecureToken: true,
-            }),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
-
-        if (response.ok) {
-          // Successful login, you can handle the response here
-          alert('Signup success');
-        } else {
-          // Handle login error
-          const data = await response.json();
-          setError(data.error.message);
+    try {
+      const response = await fetch(
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDX43zQVaf3t-Hb9Gqap_JUSumjpZmNPcM',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            email,
+            password,
+            returnSecureToken: true,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
         }
-      } catch (error) {
-        // Handle network or other errors
-        setError('An error occurred while trying to login.');
-      } finally {
-        setLoading(false);
+      );
+
+      if (response.ok) {
+        // Assuming a successful login, set user information in the context
+        const data = await response.json();
+        authCtx.login(data.idToken, data.localId);
+       
+        navigate('/'); 
+      } else {
+        // Handle the error case, if needed
+        setError('Login failed. Please check your credentials.');
       }
+    } catch (error) {
+      // Handle any errors from the API request
+      setError('An error occurred during login.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className='mt-28 w-full max-w-xs mx-auto'>
       <h1 className='text-center font-semibold border-b-2 border-red-400 w-28 mx-auto text-lg'>
-        Signup Form
+        Signin Form
       </h1>
       <form
         onSubmit={submitHandler}
@@ -84,16 +85,19 @@ const Signup = () => {
             className='bg-slate-950 text-slate-50 py-2 px-5 rounded'
             disabled={isLoading}
           >
-            {isLoading ? 'Signing In...' : 'Sign Up'}
+            {isLoading ? 'Signing In...' : 'Sign In'}
           </button>
         </div>
         <p>
-        If you are Email is Already signin in, go to{' '}
-        <Link to="/signin" className='text-slate-950'>Signin</Link> .
-      </p>
+          If you are not logged in, go to{' '}
+          <Link to='/signup' className='text-slate-950'>
+            Signup
+          </Link>{' '}
+          first.
+        </p>
       </form>
     </div>
   );
 };
 
-export default Signup;
+export default Signin;

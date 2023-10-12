@@ -58,7 +58,7 @@ const Store = () => {
             </div>
             <div className="flex justify-between py-3 items-center max-w-xs">
               <h1 className="font-extrabold">${product.price}</h1>
-              <button className="bg-slate-950 text-slate-100  py-2 px-3 font-semibold rounded-md transition hover:translate-y-1 hover:scale-110 hover:bg-slate-50 hover:text-slate-950 duration-300 shadow-md shadow-slate-500 max-w">
+              <button  className="bg-slate-950 text-slate-100  py-2 px-3 font-semibold rounded-md transition hover:translate-y-1 hover:scale-110 hover:bg-slate-50 hover:text-slate-950 duration-300 shadow-md shadow-slate-500 max-w">
                 Add To Cart
               </button>
             </div>
